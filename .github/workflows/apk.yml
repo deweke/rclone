@@ -9,6 +9,7 @@ on:
 #       - apk
 env:
   TZ: Asia/Shanghai
+  rc_rclone: ${{ secrets.RCLONE_CONFIG }}
 
 jobs:
   build:
@@ -40,7 +41,7 @@ jobs:
         sudo mkdir -p /mnt/od
         sudo cp rclone.conf /home/runner/.config/rclone/
         sudo cp rclone.conf /root/.config/rclone  
-        sudo rclone mount od:apkd /mnt/od --copy-links --allow-other --allow-non-empty --umask 000 --daemon & 
+        sudo rclone mount e5-rclone:apk /mnt/od --copy-links --allow-other --allow-non-empty --umask 000 --daemon & 
         df -h
         df -hl
         # sudo cp -rf 224g.txt /mnt/od
